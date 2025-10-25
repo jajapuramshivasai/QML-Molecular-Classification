@@ -1,0 +1,8 @@
+networkx
+numpy
+scikit-learn
+matplotlib
+seaborn
+quri-parts[qulacs]
+requests
+tqdm
