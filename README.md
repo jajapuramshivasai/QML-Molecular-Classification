@@ -22,7 +22,7 @@ This repository implements and evaluates classical graph kernel methods alongsid
 ## Getting Started
 Clone and install dependencies:
 ```bash
-git clone https://github.com/jajapuramshivasai/Quantum-Kernel-Molecular-Classification.git
+git clone https://github.com/jajapuramshivasai/QML-Molecular-Classification.git
 cd Quantum-Kernel-Molecular-Classification
 pip install -r requirements.txt
 jupyter notebook
