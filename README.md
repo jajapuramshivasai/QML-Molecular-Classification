@@ -1,137 +1,92 @@
-#  Quantum-Kernel-Molecular-Classification
+# Quantum-Kernel-Molecular-Classification
 
-**Comparing Classical Graph Kernels and Quantum-Inspired Embeddings for Molecular Classification**
+Comparing classical graph kernels and quantum-inspired embeddings for molecular classification — a project by Team The Cats Cradle.
 
-*A Project by Team The Cat's Cradle*
+## QPoland Global Quantum Hackathon 2025
+18-Oct-2025 to 26-Oct-2025  
+https://www.qaif.org/contests/qpoland-global-quantum-hackathon 
 
----
-
-## 🏆 QPoland Global Quantum Hackathon 2025
-
-**Dates:** 18-Oct-2025 to 26-Oct-2025  
-**Challenge Link:** [https://www.qaif.org/contests/qpoland-global-quantum-hackathon](https://www.qaif.org/contests/qpoland-global-quantum-hackathon)
-
----
-
-## Overview and Innovation
-
-This repository addresses the challenge of molecular classification by comparing classical graph kernels with novel, **scalable quantum-inspired feature maps**. The goal is to demonstrate that quantum-derived embeddings can generate more expressive features for Support Vector Machine (SVM) classification on complex graph-structured data.
-
-### 💡 Core Innovation: Scalable Ego-Graph Quantum Walk
-
-We tackle the fundamental **qubit-scaling limitation** of quantum algorithms on large molecular graphs by introducing an **ego-graph decomposition** strategy. This method extracts localized subgraphs around each node, drastically reducing the required qubit count for **Trotterized Quantum Walk (QW)** circuit simulation. This enables:
-
-1.  **Feasibility:** Efficient feature extraction from large molecular graphs.
-2.  **Accuracy:** Capturing local functional-group topology effects crucial for chemical prediction.
-3.  **Versatility:** Execution via classical simulation fallbacks or on quantum backends using the **QURI Parts** framework.
-
----
+## Overview
+This repository implements and evaluates classical graph kernel methods alongside a quantum-inspired feature map based on Quantum Walk (QW) principles for molecular and protein graph classification. The project compares established classical approaches (Weisfeiler-Lehman, Shortest-Path) with novel quantum-inspired methods (QURI Ego-QW, CTQW) using Support Vector Machines (SVMs) with an RBF kernel. The innovation lies in leveraging ego-graph decomposition and quantum-inspired techniques to address qubit-scaling issues, enabling efficient feature extraction that enhances classification performance on molecular structures.
 
 ## Table of Contents
-* [Getting Started](#getting-started)
-* [Datasets](#datasets)
-* [Implementation Overview](#implementation-overview)
-* [Evaluation Protocol](#evaluation-protocol)
-* [Key Results Summary](#key-results-summary)
-* [Team – Key Contributors](#team--key-contributors)
-* [References](#references)
-
----
+- Getting Started
+- Datasets
+- Implementation Overview
+- Evaluation Protocol
+- Key Results
+- Team (Key Contributors)
+- Trimmed References
+- Contact
 
 ## Getting Started
-
-To clone the repository and install dependencies:
-
+Clone and install dependencies:
 ```bash
-git clone [https://github.com/Dr-Sushant/Quantum-Kernel-Molecular-Classification.git](https://github.com/Dr-Sushant/Quantum-Kernel-Molecular-Classification.git)
+git clone https://github.com/jajapuramshivasai/Quantum-Kernel-Molecular-Classification.git
 cd Quantum-Kernel-Molecular-Classification
 pip install -r requirements.txt
 jupyter notebook
-````
+```
 
-### Quick Run
-
-Example notebooks demonstrating the end-to-end pipeline are provided under the `notebooks/` directory:
-
-  * `notebooks/experiment_pipeline.ipynb`: End-to-end training and evaluation across all datasets and methods.
-  * `notebooks/quantum_embeddings_demo.ipynb`: Detailed demonstration of the Trotterized quantum-walk embedding and fidelity kernel pipeline.
-
------
+Quick run (examples and notebooks are provided under the notebooks/ directory):
+- notebooks/sub_main.ipynb — End-to-end training and evaluation on benchmark datasets
+- notebooks/quantum_embeddings_demo.ipynb — Demo of the quantum-inspired embedding pipeline
 
 ## Datasets
+Standard benchmark graph datasets used in experiments:
+- AIDS — HIV activity screening (~2000 compounds, subsampled to 200 per class)
+- PROTEINS — Protein enzyme classification (~1113 graphs, subsampled to 200 per class)
+- NCI1 — Anti-cancer compound activity (~4110 compounds, subsampled to 200 per class)
+- PTC-MR — Carcinogenicity prediction (~344 compounds, total used)
+- MUTAG — Mutagenicity prediction (~188 compounds, total used)
 
-The project benchmarks performance on five standard graph classification datasets:
-
-| Dataset | Domain | Task / Description | Size (Approx.) |
-| :--- | :--- | :--- | :--- |
-| **AIDS** | Chemistry | HIV activity screening | \~2,000 compounds |
-| **PROTEINS** | Biology | Protein enzyme classification | \~1,113 graphs |
-| **NCI1** | Chemistry | Anti-cancer compound activity | \~4,110 compounds |
-| **PTC-MR** | Chemistry | Carcinogenicity prediction | \~344 compounds |
-| **MUTAG** | Chemistry | Mutagenicity prediction | \~188 compounds |
-
-*(Dataset download and preprocessing scripts are available in the `data/` or `notebooks/` directories.)*
-
------
+(See data/ or notebooks/ for dataset download and preprocessing scripts.)
 
 ## Implementation Overview
-
-Our implementation is structured around four main feature extraction methods and the core quantum scaling utility:
-
-  * `extract_ego_graphs()`: Core utility for **ego-graph decomposition**, enabling scalable quantum processing.
-  * **Classical Baselines:**
-      * `wl_subtree_kernel()`: Implements the Weisfeiler–Lehman subtree kernel.
-      * `shortest_path_kernel()`: Computes features using NetworkX shortest-path statistics.
-  * **Quantum-Inspired Methods:**
-      * `QuantumWalkEmbedding` / `ScalableQuantumWalkEmbedding`: Classes for constructing **Trotterized Quantum-Walk embeddings** on graphs, with classical simulation fallbacks.
-      * `fidelity_kernel()`: Function utilizing **quantum-state fidelity** to construct Gram matrices from the QW embeddings, effectively defining the custom kernel.
-  * **QURI Parts Integration:** Utilities such as `mixing_matrix_quri_circuit()`, `build_trotter_circuit_for_graph()`, and `trotterize_positions_amplitude()` are used to interface with the Quri Parts framework for circuit generation and simulation.
-
------
+- `extract_ego_graphs()`: Ego-graph decomposition to manage large graphs within limited qubit constraints.
+- `wl_subtree_kernel()`: Weisfeiler-Lehman subtree kernel implementation.
+- `shortest_path_kernel()`: Shortest-path kernel using NetworkX shortest-path statistics.
+- `QuantumWalkEmbedding` / `ScalableQuantumWalkEmbedding`: Classes for CTQW and QURI Ego-QW embeddings, with classical simulation options.
+- `fidelity_kernel()`: Utilizes quantum-state fidelity for Gram matrix construction via Quri Parts.
+- Utilities: `mixing_matrix_quri_circuit()`, `build_trotter_circuit_for_graph()`, `trotterize_positions_amplitude()`, `quantum_state_fidelity()`.
 
 ## Evaluation Protocol
+- Nested 5-fold cross-validation for robust generalization.
+- Classifier: SVM with RBF kernel (scikit-learn) using extracted feature representations.
+- Metrics: Mean ± standard deviation of Accuracy and F1-score across outer CV folds.
+- Data Handling: Features scaled (e.g., StandardScaler) with balanced class weights in SVM training.
 
-We employ a rigorous evaluation protocol to ensure robust and comparable results:
+## Key Results (Summary)
+See notebooks/sub_main.ipynb and experiment_results.json for detailed logs and per-dataset numbers. Example summary table:
 
-  * **Cross-Validation:** **10-fold stratified cross-validation** to minimize bias and variance.
-  * **Classifier:** **Support Vector Machine (SVM)** from `scikit-learn` is used, taking the kernel matrices (Gram matrices) directly from our feature map implementations.
-  * **Metrics:** **Accuracy** and **$F1$-score** (macro or weighted, depending on dataset balance) are reported.
-  * **Reporting:** Results present the **mean and standard deviation** across all CV folds (and random seeds where applicable).
+| Method         | Dataset | Accuracy (Mean ± Std) | F1-score (Mean ± Std) |
+|----------------|---------|-----------------------|-----------------------|
+| QURI Ego-QW    | AIDS    | 0.9650 ± 0.0255       | 0.9662 ± 0.0237       |
+| CTQW           | AIDS    | 0.9950 ± 0.0100       | 0.9948 ± 0.0103       |
+| Shortest-Path  | AIDS    | 0.9600 ± 0.0200       | 0.9598 ± 0.0207       |
+| WL Subtree     | AIDS    | 0.9300 ± 0.0245       | 0.9193 ± 0.0309       |
+| QURI Ego-QW    | MUTAG   | 0.8772 ± 0.0336       | 0.8793 ± 0.0324       |
+| CTQW           | MUTAG   | 0.8514 ± 0.0255       | 0.8527 ± 0.0269       |
+| Shortest-Path  | MUTAG   | 0.7872 ± 0.0169       | 0.7812 ± 0.0161       |
+| WL Subtree     | MUTAG   | 0.7818 ± 0.0273       | 0.7783 ± 0.0295       |
 
------
+(Results vary by dataset; full details in referenced files.)
 
-## Key Results Summary
+## Team — Key Contributors
 
-*(Note: Numeric results are dynamically generated within the notebooks/experiment\_pipeline.ipynb. The table below serves as a structured placeholder for the final report.)*
-
-| Kernel Type | Accuracy (avg) | F1-score (avg) | Notes |
-| :--- | :--- | :--- | :--- |
-| **WL Kernel** | TBD | TBD | Baseline classical (Structural Motif) |
-| **Shortest-Path** | TBD | TBD | Path-based baseline (Topological) |
-| **Quantum-Inspired** | TBD | TBD | **Trotterized Quantum-Walk Embeddings**, scaled via Ego-Graphs |
-
------
-
-## Team – Key Contributors
-
-| Name | Discord Handle | Role / Contribution |
-| :--- | :--- | :--- |
-| **Dr. Sushant Tapase** | @Dr-Sushant | Project Lead, Algorithm Design, QW Implementation |
-| **Amon Koike** | @thedaemon\_AK | Quantum Circuit Implementation, QURI Parts Integration |
-| **Jajapuram Shiva Sai** | @frosty | Data Preprocessing, Classical Kernel Implementations |
-| **Ramesh Makwana** | @Ramesh Makwana | Evaluation Pipeline & Results Analysis |
-
------
+| Name                  | Discord Handle         | Role / Contribution                  |
+|-----------------------|------------------------|--------------------------------------|
+| Dr. Sushant Tapase    | @Dr-Sushant            | -  |
+| Amon Koike            | @thedaemon_AK         | - |
+| Jajapuram Shiva Sai   | @frosty               | -      |
+| Ramesh Makwana        | @Ramesh Makwana       | -    |
 
 ## References (Selected)
+1. QURI Parts — QunaSys Inc. — https://github.com/QunaSys/quri-parts (Framework for quantum circuits.)
+2. Xing Ai et al. — "Towards Quantum Graph Neural Networks: An Ego-Graph Learning Approach" — arXiv:2201.05158 (Ego-graph inspiration.)
+3. N. Shervashidze et al. — "Weisfeiler-Lehman Graph Kernels" — JMLR, 2011 (WL kernel.)
+4. V. Havlíček et al. — "Supervised Learning with Quantum-Enhanced Feature Spaces" — Nature, 2019 (Quantum feature maps.)
+5. Andrew M. Childs — "Universal Computation by Quantum Walk" — Phys. Rev. Lett., 2009 (Quantum walk foundations.)
 
-1.  **QURI Parts** — QunaSys Inc. — [https://github.com/QunaSys/quri-parts](https://github.com/QunaSys/quri-parts) (Framework used for circuits and simulation.)
-2.  Xing Ai et al. — "Towards Quantum Graph Neural Networks: An Ego-Graph Learning Approach" — arXiv:2201.05158. (Inspiration for ego-graph decomposition and scalable processing.)
-3.  N. Shervashidze et al. — "Weisfeiler-Lehman Graph Kernels" — JMLR, 2011. (WL-subtree kernel.)
-4.  V. Havlíček et al. — "Supervised Learning with Quantum-Enhanced Feature Spaces" — Nature, 2019. (Quantum feature maps / QSVM.)
-5.  Andrew M. Childs — "Universal Computation by Quantum Walk" — Phys. Rev. Lett., 2009. (Quantum-walk foundations.)
-6.  Seth Lloyd — "Universal Quantum Simulators" — Science, 1996. (Trotter-Suzuki decomposition.)
-
-<!-- end list -->
-
-```
+## Contact
+For inquiries, reach out via Discord handles listed above or email team@thecatscradle.org.
