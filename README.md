@@ -9,16 +9,10 @@
 This repository presents a comparative study of classical graph kernels and a quantum-inspired Trotterized quantum walk (QW) embedding for molecular and protein graph classification. The project leverages datasets such as AIDS, PROTEINS, NCI1, PTC-MR, and MUTAG, utilizing the QURI Parts framework to simulate quantum-inspired features. A key innovation is the ego-graph decomposition technique, which reduces qubit requirements while preserving functional-group topology, enhancing classification accuracy.
 
 ## Deliverables  
-### Source Code
-https://github.com/jajapuramshivasai/QML-Molecular-Classification/src
-
-### Report link
-https://jajapuramshivasai.github.io/QML-Molecular-Classification/
-
-https://github.com/jajapuramshivasai/QML-Molecular-Classification/docs/QML-Molecular-Classification_report.pdf  
-
-### Video link  
-https://drive.google.com/file/d/1p1539dZOyex4KxVeZW4sIBkU02wZt9MJ/view?usp=sharing
+- Source Code: [Repository src folder](https://github.com/jajapuramshivasai/QML-Molecular-Classification/tree/main/src)  
+- Report (GitHub Pages): https://jajapuramshivasai.github.io/QML-Molecular-Classification/  
+- Report (PDF in repo): [QML-Molecular-Classification_report.pdf](https://github.com/jajapuramshivasai/QML-Molecular-Classification/blob/main/docs/QML-Molecular-Classification_report.pdf)  
+- Video: https://drive.google.com/file/d/1p1539dZOyex4KxVeZW4sIBkU02wZt9MJ/view?usp=sharing
 
 ### Quick Start  
 1. Clone the repository and install dependencies:  
