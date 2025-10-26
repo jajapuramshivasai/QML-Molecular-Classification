@@ -88,5 +88,3 @@ See notebooks/sub_main.ipynb and experiment_results.json for detailed logs and p
 4. V. Havlíček et al. — "Supervised Learning with Quantum-Enhanced Feature Spaces" — Nature, 2019 (Quantum feature maps.)
 5. Andrew M. Childs — "Universal Computation by Quantum Walk" — Phys. Rev. Lett., 2009 (Quantum walk foundations.)
 
-## Contact
-For inquiries, reach out via Discord handles listed above or email team@thecatscradle.org.

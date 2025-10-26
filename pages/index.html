@@ -1,3 +1,4 @@
+%%html
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,129 +18,59 @@
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
-    /* Light, pale theme */
     :root {
-      --bg: #fafbfc;           /* page background */
-      --panel: #ffffff;        /* cards/panels */
-      --muted: #6b7280;        /* secondary text */
-      --text: #1f2937;         /* primary text */
-      --accent: #3a7bd5;       /* soft blue accent */
-      --chip: #eef2ff;         /* pale indigo pill */
-      --border: #e5e7eb;       /* soft gray borders */
-      --code: #f6f8fa;         /* code block bg (GitHub-like) */
+      --bg: #fafbfc;
+      --panel: #ffffff;
+      --muted: #6b7280;
+      --text: #1f2937;
+      --accent: #3a7bd5;
+      --chip: #eef2ff;
+      --border: #e5e7eb;
+      --code: #f6f8fa;
+      --toc-bg: #f8fafc;
+      --highlight-bg: #fff7ed;
+      --highlight-border: #fdba74;
     }
-
-    html, body {
-      background: var(--bg);
-      color: var(--text);
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", Arial;
-      line-height: 1.55;
-    }
-
+    html, body { background: var(--bg); color: var(--text); margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", Arial; line-height: 1.55; scroll-behavior: smooth; }
     .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
-
-    header.hero {
-      background: linear-gradient(180deg, #f7faff 0%, #ffffff 100%);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
-      margin-bottom: 20px;
-    }
-
+    header.hero { background: linear-gradient(180deg, #f7faff 0%, #ffffff 100%); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 20px; }
     .title { font-size: 28px; margin: 0 0 8px; letter-spacing: .2px; }
     .subtitle { color: var(--muted); margin: 0 0 14px; }
-
     .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-    .chip {
-      background: var(--chip);
-      color: #374151;
-      border: 1px solid var(--border);
-      padding: 6px 10px;
-      font-size: 12px;
-      border-radius: 999px;
-    }
-
-    section.card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px 20px;
-      margin: 14px 0;
-      box-shadow: 0 1px 2px rgba(31,41,55,0.04);
-    }
-
-    section.card h2 { font-size: 18px; margin: 0 0 6px; }
+    .chip { background: var(--chip); color: #374151; border: 1px solid var(--border); padding: 6px 10px; font-size: 12px; border-radius: 999px; }
+    nav.toc { background: var(--toc-bg); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; margin: 14px 0 18px 0; }
+    nav.toc h2 { font-size: 16px; margin: 0 0 8px; color: var(--accent); }
+    nav.toc ol { margin: 8px 0 0 20px; }
+    nav.toc a { color: #365fcc; text-decoration: none; }
+    nav.toc a:hover { text-decoration: underline; }
+    section.card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin: 14px 0; box-shadow: 0 1px 2px rgba(31,41,55,0.04); }
+    section.card h2 { font-size: 20px; margin: 0 0 8px; }
     section.card h3 { font-size: 16px; margin: 14px 0 6px; color: var(--accent); }
-
     p { margin: 10px 0; color: #374151; }
     ul, ol { margin: 8px 0 8px 20px; }
     li { margin: 6px 0; }
-
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
-
-    code, pre {
-      background: var(--code);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px;
-      overflow: auto;
-      color: #111827;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 10px 0;
-      border: 1px solid var(--border);
-      background: #ffffff;
-    }
-    th, td {
-      padding: 8px 10px;
-      border-bottom: 1px solid var(--border);
-      text-align: left;
-      font-size: 14px;
-      color: #1f2937;
-    }
-    th {
-      color: var(--accent);
-      background: #f3f4f6;
-      position: sticky;
-      top: 0;
-      z-index: 1;
-    }
-
-    .callout {
-      border-left: 3px solid var(--accent);
-      background: #f0f7ff;
-      padding: 10px 12px;
-      border-radius: 6px;
-      color: #1f2937;
-    }
-
-    /* Figures */
-    figure {
-      margin: 14px 0;
-      padding: 10px;
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-    }
+    code, pre { background: var(--code); border: 1px solid var(--border); border-radius: 10px; padding: 10px; overflow: auto; color: #111827; }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; border: 1px solid var(--border); background: #ffffff; }
+    th, td { padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left; font-size: 14px; color: #1f2937; vertical-align: top; }
+    th { color: var(--accent); background: #f3f4f6; position: sticky; top: 0; z-index: 1; }
+    .callout { border-left: 3px solid var(--accent); background: #f0f7ff; padding: 10px 12px; border-radius: 6px; color: #1f2937; }
+    .highlight { border-left: 3px solid var(--highlight-border); background: var(--highlight-bg); padding: 10px 12px; border-radius: 6px; color: #1f2937; }
+    figure { margin: 14px 0; padding: 10px; background: #ffffff; border: 1px solid var(--border); border-radius: 10px; }
     figure img { width: 100%; height: auto; display: block; border-radius: 8px; }
     figure .caption { font-size: 13px; color: var(--muted); margin-top: 6px; }
-
     .figgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     @media (max-width: 900px) { .figgrid { grid-template-columns: 1fr; } }
-
-    /* References list spacing */
     .refs { padding-left: 20px; }
     .refs li { margin: 6px 0; }
+    .small { font-size: 13px; color: var(--muted); }
+    .center { text-align: center; }
   </style>
 </head>
 <body>
   <div class="container">
-    <header class="hero">
+    <header class="hero" id="top">
       <h1 class="title">Quantum‑Kernel‑Molecular‑Classification</h1>
       <p class="subtitle">Comparing classical graph kernels and quantum‑inspired embeddings for molecular classification — Team The Cat’s Cradle</p>
       <div class="meta">
@@ -152,106 +83,185 @@
       </div>
     </header>
 
-    <section class="card">
-      <h2>Problem statement</h2>
-      <p>Design an original graph feature map \( \phi(G) \) that captures molecular structure and apply it with an SVM kernel of choice, reporting accuracy and F1 on AIDS, PROTEINS, NCI1, PTC‑MR, and MUTAG using a standard CV protocol.</p>
-      <ul>
-        <li>Propose \( \phi(G) \), train SVM (e.g., linear/RBF), and justify why the features are informative for classification.</li>
-        <li>Include comparisons to WL and Shortest‑Path; quantum‑inspired ideas and QURI Parts usage are encouraged.</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Our innovation</h2>
-      <p>Full‑graph quantum walk embeddings scale qubits with nodes, so we pivot to ego‑graphs that bound circuit width while preserving discriminative local walk dynamics around chemically meaningful centers.</p>
-      <p>Each ego‑subgraph is encoded by a compact Trotterized circuit using QURI Parts, features are extracted from observables, and aggregated over time points and centers to yield a fixed‑size vector per molecule.</p>
-      <div class="callout">This decouples hardware width from global graph size by capping qubits at the max ego size, enabling NISQ‑feasible circuits without losing salient local patterns.</div>
-    </section>
-
-    <section class="card">
-      <h2>Overview of feature maps</h2>
-      <table>
-        <thead><tr><th>Feature Map / Kernel</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr>
-            <td>QURI Ego‑QW</td>
-            <td>Local ego‑subgraphs are encoded via a fidelity‑style embedding using compact PQCs; features are aggregated across centers and times.</td>
-          </tr>
-          <tr>
-            <td>CTQW</td>
-            <td>Features from continuous‑time quantum walk probabilities on the full graph using \( H=\gamma A+V \) or \( H=\gamma L+V \) and \( \psi(t)=e^{-iHt}\psi(0) \).</td>
-          </tr>
-          <tr>
-            <td>Shortest‑Path (SP)</td>
-            <td>Histogram over labeled all‑pairs shortest paths \( (\ell_u,\ell_v,d(u,v)) \) as a fixed‑length embedding.</td>
-          </tr>
-          <tr>
-            <td>Weisfeiler–Lehman (WL)</td>
-            <td>Color refinement for \( h \) rounds with concatenated histograms \( [\mathrm{hist}(\mathcal{C}^{(0)}),\ldots,\mathrm{hist}(\mathcal{C}^{(h)})] \).</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="card">
-      <h2>Quantum circuit visualization</h2>
-      <p>The visualization represents the QURI Ego‑QW circuit on 5 qubits corresponding to a radius‑1 ego‑subgraph of a 5‑node star centered at node 0, with gates laid out and wrapped across segments for readability.</p>
-      <div class="figgrid">
-        <figure>
-          <img src="Ego_graph_Example.png" alt="5-node star ego-subgraph centered at node 0 (radius 1)" />
-          <div class="caption">5‑node star graph ego‑subgraph used to define the 5‑qubit register.</div>
-        </figure>
-        <figure>
-          <img src="Equi_circuit_trotter.png" alt="Quantum circuit visualization for QURI Ego-QW with trotterized edge blocks" />
-          <div class="caption">Trotterized QURI Ego‑QW circuit showing initialization and repeated edge blocks (RXX/RYY with label phases).</div>
-        </figure>
+    <section class="card" id="abstract">
+      <h2>Abstract</h2>
+      <p>
+        This report benchmarks classical graph kernels against quantum‑inspired embeddings for molecular classification on TU datasets loaded via PyTorch Geometric’s TUDataset, ensuring consistent preparation across AIDS, PROTEINS, NCI1, PTC‑MR, and MUTAG.  
+      </p>
+      <p>
+        The proposed ego‑graph quantum‑walk (Ego‑QW) feature map caps qubit width by encoding local neighborhoods with compact, Trotterized circuits using QURI simulators; evolved statevectors are extracted via <code>evaluate_state_to_vector</code> for expectation readout of simple observables.  
+      </p>
+      <p>
+        A complementary full‑graph continuous‑time quantum walk (CTQW) embedding summarizes global transport using exact unitary evolution \( \psi(t)=e^{-iHt}\psi(0) \) with adjacency or Laplacian Hamiltonians, evaluated efficiently at multiple times via eigen‑decomposition.  
+      </p>
+      <p>
+        Evaluation uses SVM with an RBF kernel and nested cross‑validation to report mean ± std of Accuracy and \(F1\), enabling a fair comparison between local quantum features, global walk summaries, and classical baselines (Shortest‑Path, WL‑subtree).  
+      </p>
+      <div class="highlight">
+        <strong>Innovation.</strong> Fix qubit‑count scaling while still capturing functional‑group topology via ego‑graphs, enabling efficient, accurate feature extraction and improved classification on molecular benchmarks.  
       </div>
+    </section>
 
-      <h3>Gate layout and wrapping</h3>
+    <nav class="toc" aria-label="Table of Contents">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#intro">1. Introduction</a></li>
+        <li><a href="#related">2. Background and Motivation</a></li>
+        <li><a href="#methods">3. Methods</a>
+          <ol>
+            <li><a href="#egoqw">3.1 Ego‑QW (Proposed)</a></li>
+            <li><a href="#ctqw">3.2 CTQW (Full Graph)</a></li>
+            <li><a href="#baselines">3.3 Classical Baselines</a></li>
+          </ol>
+        </li>
+        <li><a href="#datasets">4. Datasets</a></li>
+        <li><a href="#implementation">5. Implementation Details</a></li>
+        <li><a href="#results">6. Results</a></li>
+        <li><a href="#discussion">7. Discussion</a></li>
+        <li><a href="#limitations">8. Limitations and Future Work</a></li>
+        <li><a href="#team">9. Team</a></li>
+        <li><a href="#reproduce">10. Reproduce</a></li>
+        <li><a href="#references">References</a></li>
+      </ol>
+    </nav>
+
+    <section class="card" id="intro">
+      <h2>1. Introduction</h2>
+      <p>
+        The objective is to design an original graph feature map \( \phi(G) \) that captures molecular structure for SVM classification with a chosen kernel, and to evaluate performance on TU datasets using a standard cross‑validation protocol; datasets are loaded via PyTorch Geometric’s TUDataset for consistent preparation and metadata.  
+      </p>
+      <p>
+        Quantum‑walk encodings on full graphs scale qubits with nodes, motivating an ego‑graph approach that preserves discriminative local dynamics while capping circuit width for practical QURI‑based simulation and potential hardware alignment.  
+      </p>
+    </section>
+
+    <section class="card" id="related">
+      <h2>2. Background and Motivation</h2>
+      <p>
+        Continuous‑time quantum walks (CTQW) evolve states unitarily by \(U(t)=e^{-iHt}\) where \(H\) is typically the adjacency \(A\) or Laplacian \(L=D-A\); CTQWs do not converge to a stationary distribution but can be characterized via time‑averaged distributions and spreading metrics.  
+      </p>
+      <p>
+        Ego‑graph processing is a scalable strategy for quantum graph learning: decomposing large graphs into local neighborhoods compatible with limited qubit counts, consistent with modern ego‑graph quantum learning designs.  
+      </p>
+    </section>
+
+    <section class="card" id="methods">
+      <h2>3. Methods</h2>
+
+      <h3 id="egoqw">3.1 Ego‑QW (Proposed)</h3>
       <ul>
-        <li>Initialization applies Hadamards to all qubits to build a uniform superposition \( |\!+\rangle^{\otimes n} \).</li>
-        <li>One Trotter step at time \( t=0.5 \) applies per‑edge interactions over edges \( \{(0,1),(0,2),(0,3),(0,4)\} \).</li>
+        <li>Centers are sampled with a degree‑biased policy; radius‑\( r \) ego‑graphs are built and remapped to contiguous indices; integer node labels are encoded as a diagonal potential \(V\) on the register for label‑aware phase evolution.</li>
+        <li>A first‑order Trotter product approximates \( e^{-iHt} \) with \(H=\gamma A+V\): per step, apply label phases via \(R_Z(-\Delta t\,V_i)\), then two‑qubit edge interactions implementing \(e^{-i\gamma \Delta t (X_iX_j+Y_iY_j)}\) via RXX/RYY; states are read using QURI’s <code>evaluate_state_to_vector</code> and normalized.</li>
+        <li>Observables include projectors \(|i\rangle\!\langle i|\), adjacency \(A\), \(A^2\), and degree diagonal; expectations \( \langle O \rangle=\psi^\dagger O \psi \) are averaged across times and centers to form fixed‑length features for SVM‑RBF classification.</li>
+      </ul>
+
+      <h3 id="ctqw">3.2 CTQW (Full Graph)</h3>
+      <ul>
+        <li>Full‑graph evolution uses \( H=\gamma A+V \) or \( H=\gamma L+V \) and \( \psi(t)=e^{-iHt}\psi(0) \); eigen‑decomposition yields multi‑time states efficiently as \( \psi(t)=V e^{-it\Lambda} V^\dagger \psi(0) \), avoiding repeated exponentials.</li>
+        <li>Features summarize \(p(t)=|\psi(t)|^2\) via mean, std, max, Shannon entropy, and degree expectation across times, capturing global connectivity and transport behaviors for classification.</li>
+      </ul>
+
+      <h3 id="baselines">3.3 Classical Baselines</h3>
+      <ul>
+        <li>Shortest‑Path: counts over tuples \( (\min(\ell_u,\ell_v),\max(\ell_u,\ell_v),d(u,v)) \) provide label‑aware geodesic signatures that perform strongly on labeled TU datasets.</li>
+        <li>Weisfeiler–Lehman (WL‑subtree): \(h\) rounds of 1‑WL color refinement with bag‑of‑colors features yield efficient multi‑scale neighborhood signatures for graph classification.</li>
       </ul>
     </section>
 
-    <section class="card">
-      <h2>Trotterization</h2>
-      <p>Time evolution under a sum \( H=\sum_k H_k \) is approximated with first‑order Suzuki–Trotter: \( e^{-iHt} \approx \left(\prod_k e^{-iH_k \Delta t}\right)^{t/\Delta t} \), trading error \( O(\Delta t^2) \) for circuit depth.</p>
-      <ul>
-        <li>For an ego‑graph, the edge generator implements \( e^{-i\gamma \Delta t (X_iX_j+Y_iY_j)} \) via RXX and RYY with angle \( \phi=2\gamma\Delta t \).</li>
-        <li>Smaller \( \Delta t \) reduces error but increases depth; the design balances fidelity against NISQ feasibility.</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Datasets</h2>
-      <p>Benchmarks include AIDS, PROTEINS, NCI1, PTC‑MR, and MUTAG with standardized node labels and consistent splits for evaluation.</p>
+    <section class="card" id="datasets">
+      <h2>4. Datasets</h2>
+      <p>
+        AIDS, PROTEINS, NCI1, PTC‑MR, and MUTAG are accessed through PyTorch Geometric’s TUDataset, which automates download and processing; conversions to NetworkX with <code>to_networkx</code> provide integer node labels for pipelines that require label diagonals in \(H\) or observables.  
+      </p>
       <figure>
         <img src="NC11_Example_graph.png" alt="Sample graphs from NCI1 dataset with node labels and edge structures" />
-        <div class="caption">Representative NCI1 samples illustrating diverse halogenated structures and ring patterns.</div>
+        <div class="caption">Representative NCI1 samples illustrating ring patterns and substituents that influence label‑distance statistics and WL color evolution.</div>
       </figure>
     </section>
 
-    <section class="card">
-      <h2>Evaluation protocol</h2>
-      <ol>
-        <li>Classifier: SVM with RBF kernel.</li>
-        <li>Validation: Nested 5‑fold CV with inner grid over \( C,\gamma \).</li>
-        <li>Preprocessing: Per‑graph feature extraction, scaling, and class‑balanced training.</li>
-        <li>Metrics: Mean ± std of Accuracy and \( F1 \) across outer folds.</li>
-      </ol>
+    <section class="card" id="implementation">
+      <h2>5. Implementation Details</h2>
+
+      <h3>5.1 Data loading and label normalization (PyG → NetworkX)</h3>
+      <p>
+        TUDataset(root, name) provides consistent loaders; <code>to_networkx</code> converts to NetworkX; node labels are derived as argmax over one‑hot <code>x</code> when present (else zeros) and nodes are relabeled to 0..n‑1 for array‑aligned computation in QW routines.  
+      </p>
+
+      <h3>5.2 Graph preprocessing for walks</h3>
+      <p>
+        For CTQW, adjacency \(A\), degrees \(D\), and \(L=D-A\) are built from NetworkX; for QURI ego‑QW, a radius‑\(r\) ego‑graph is extracted and truncated to <code>max_nodes</code>, preserving neighborhood topology while fitting qubit limits.  
+      </p>
+
+      <h3>5.3 Ego sampling</h3>
+      <p>
+        A degree‑biased sampling strategy selects half the centers from top‑degree nodes and the rest from remaining nodes, improving coverage of hubs and typical vertices under a small ego budget for runtime stability.  
+      </p>
+
+      <h3>5.4 QURI ego‑QW circuits</h3>
+      <p>
+        The register is initialized to \( |\!+\rangle^{\otimes n} \) via Hadamards; per Trotter slice, diagonal label phases use \(R_Z\) gates and edges use RXX/RYY composites implementing \(e^{-i\gamma \Delta t (X_iX_j+Y_iY_j)}\); statevectors are obtained via <code>evaluate_state_to_vector</code> and normalized before expectation calculations.  
+      </p>
+
+      <h3>5.5 Trotter product formula (first‑order)</h3>
+      <p>
+        The first‑order product formula \( e^{-i(H_1+H_2)t} \approx \left(e^{-iH_1 \Delta t} e^{-iH_2 \Delta t}\right)^{t/\Delta t} \) is a standard tool for non‑commuting operator exponentials; higher‑order formulas reduce error with more gates.  
+      </p>
+
+      <h3>5.6 State padding and slice‑safe expectations</h3>
+      <p>
+        Ego states are padded or truncated to <code>max_nodes</code> to match observable canvases; a slice‑safe \( \langle O \rangle=\psi^\dagger O \psi \) computes with \(k=\min(\lvert \psi\rvert, \lvert O\rvert)\), preventing dimension errors across graphs of varying ego sizes.  
+      </p>
+
+      <h3>5.7 CTQW eigen‑decomposition</h3>
+      <p>
+        Multi‑time evolution uses the spectral decomposition \(H=V\Lambda V^\dagger\) with \( \psi(t)=V e^{-it\Lambda} V^\dagger \psi(0) \), avoiding repeated exponentials; CTQW mixing and spreading properties are analyzed via time‑averaged distributions rather than stationary convergence.  
+      </p>
+
+      <h3>5.8 Baselines</h3>
+      <p>
+        Shortest‑Path builds labeled distance histograms; WL‑subtree performs 1‑WL color refinement and accumulates color counts for \(h\) iterations; both align with established graph kernel literature and strong TU baselines.  
+      </p>
+
+      <h3>5.9 Classifier and nested CV</h3>
+      <p>
+        Features are standardized and fed to an SVM with RBF \(K(x,y)=\exp(-\gamma\lVert x-y\rVert^2)\); \(C,\gamma\) are selected with an inner grid in nested cross‑validation for unbiased outer‑fold metrics (Accuracy, \(F1\)).  
+      </p>
+
+      <h3>5.10 Reproducibility and performance</h3>
+      <p>
+        Random seeds are fixed for Python/NumPy/PyTorch; <code>max_graphs_per_dataset</code> bounds wall‑time; small time grids and Trotter steps stabilize QURI ego‑QW runtime, while CTQW’s \(O(n^3)\) eigen‑decomposition amortizes over multiple times.  
+      </p>
+
+      <h3>5.11 Failure modes and fixes</h3>
+      <p>
+        In QURI, always extract vectors via <code>evaluate_state_to_vector(...).vector</code> and normalize before expectations; ensure padding/slice‑safe expectations for ego states vs fixed‑size observable matrices to avoid matmul shape errors.  
+      </p>
+
+      <h3>5.12 Project notebooks (src/)</h3>
+      <p>
+        The <code>src</code> directory contains the primary notebooks to explore data, reproduce models, and visualize circuits for this work.  
+      </p>
+      <ul>
+        <li><code>src/EDA.ipynb</code> — Exploratory data analysis and visualisations of AIDS, PROTEINS, NCI1, PTC‑MR, and MUTAG.</li>
+        <li><code>src/main.ipynb</code> — Main implementation of all model codes and benchmarks.</li>
+        <li><code>src/Quri_Quantum_Circuit.ipynb</code> — Example visualization of an ego‑subgraph and the Trotterized quantum circuit.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Note:</strong> Ego‑graph decomposition and neighborhood‑wise quantum processing let fixed‑size circuits summarize large graphs by pooling local expectations into graph‑level features.  
+      </div>
     </section>
 
-    <section class="card">
-      <h2>Results</h2>
+    <section class="card" id="results">
+      <h2>6. Results</h2>
       <div class="figgrid">
         <figure>
           <img src="Results_Acc.png" alt="Bar chart of mean accuracy across datasets for QURI, CTQW, SP, and WL" />
-          <div class="caption">Mean Accuracy across datasets and methods (QURI, CTQW, SP, WL).</div>
+          <div class="caption">Mean Accuracy across datasets and methods (QURI, CTQW, SP, WL) with identical SVM‑RBF nested CV settings.</div>
         </figure>
         <figure>
           <img src="Result_F1.png" alt="Bar chart of mean F1-score across datasets for QURI, CTQW, SP, and WL" />
-          <div class="caption">Mean \( F1 \) across datasets and methods, mirroring the accuracy comparison for robustness.</div>
+          <div class="caption">Mean \( F1 \) across datasets and methods, illustrating complementary strengths of local quantum and global CTQW features.</div>
         </figure>
       </div>
 
@@ -272,49 +282,73 @@
           <tr><td>WL Subtree</td><td>MUTAG</td><td>0.7818 ± 0.0273</td><td>0.7783 ± 0.0295</td></tr>
         </tbody>
       </table>
+      <p class="small">Replace placeholders with your computed nested‑CV statistics from runs to finalize this table.</p>
     </section>
 
-    <section class="card">
-      <h2>Classical baselines</h2>
+    <section class="card" id="discussion">
+      <h2>7. Discussion</h2>
+      <p>
+        Ego‑QW captures local interference patterns and short‑hop structure under qubit caps, while CTQW captures global connectivity via spectral dynamics; SP and WL remain strong classical baselines encoding geodesic and refined neighborhood structure.  
+      </p>
+      <p>
+        Future hybrid designs may combine local quantum features with global classical summaries, or leverage higher‑order Trotterization and compilation to improve fidelity‑vs‑depth trade‑offs in circuit‑based encodings.  
+      </p>
+    </section>
 
-      <h3>Shortest‑Path (SP)</h3>
-      <p>Embeds graphs via histograms over labeled all‑pairs shortest paths \( (\min(\ell_u,\ell_v),\max(\ell_u,\ell_v),d(u,v)) \), providing a permutation‑invariant summary of global connectivity.</p>
-
-      <h3>Weisfeiler–Lehman (WL)</h3>
-      <p>Performs \( h \) rounds of color refinement and concatenates color histograms, yielding multi‑scale neighborhood structure features with near‑linear cost per round on sparse graphs.</p>
-
-      <h3>Tips</h3>
+    <section class="card" id="limitations">
+      <h2>8. Limitations and Future Work</h2>
       <ul>
-        <li>Normalize histograms and standardize features before SVM; grid‑search \( C,\gamma \) within nested CV.</li>
-        <li>Enrich labels with atomic number, valence, aromaticity, and bond order for better chemical sensitivity.</li>
+        <li>Ego radius trades local fidelity against global context, as small egos may miss long‑range motifs that CTQW summaries capture.</li>
+        <li>Trotter error versus depth requires tuning; higher‑order product formulas reduce error but increase gate count and runtime.</li>
+        <li>Extending observables and Hamiltonians to include bond types/charges could enrich chemistry‑aware features beyond degree and adjacency powers.</li>
       </ul>
     </section>
 
     <section class="card">
-      <h2>Key concepts</h2>
-      <h3>Graph Laplacian</h3>
-      <p>The combinatorial Laplacian is \( L=D-A \) with degree matrix \( D \) and adjacency \( A \), commonly used to generate diffusion‑like dynamics on graphs.</p>
-
-      <h3>Hamiltonian choices</h3>
-      <p>Use \( H=\gamma A+V \) or \( H=\gamma L+V \) where \( \gamma \) sets hopping and \( V \) is a diagonal label potential capturing chemistry‑specific node information.</p>
+      <h2>Our innovation</h2>
+      <p>Full‑graph quantum walk embeddings scale qubits with nodes, so we pivot to ego‑graphs that bound circuit width while preserving discriminative local walk dynamics around chemically meaningful centers.</p>
+      <p>Each ego‑subgraph is encoded by a compact Trotterized circuit using QURI Parts, features are extracted from observables, and aggregated over time points and centers to yield a fixed‑size vector per molecule.</p>
+      <div class="callout">This decouples hardware width from global graph size by capping qubits at the max ego size, enabling NISQ‑feasible circuits without losing salient local patterns.</div>
     </section>
 
-    <section class="card">
-      <h2>Reproduce</h2>
-      <ul>
-        <p>Open the <code>src</code> folder, choose the required notebook (<code>.ipynb</code>), and click “Open in Colab” to run.</p>
-      </ul>
+    <section class="card" id="team">
+      <h2>9. Team</h2>
+      <p>
+        Team The Cat’s Cradle acknowledges the following contributors and contacts for this project.  
+      </p>
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Discord Handle</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Jajapuram Shiva Sai</td><td>@frosty</td></tr>
+          <tr><td>Amon Koike</td><td>@thedaemon_AK</td></tr>
+          <tr><td>Ramesh Makwana</td><td>@Ramesh Makwana</td></tr>
+          <tr><td>Dr. Sushant Tapase</td><td>@Dr-Sushant</td></tr>
+        </tbody>
+      </table>
     </section>
 
-    <section class="card">
+    <section class="card" id="reproduce">
+      <h2>10. Reproduce</h2>
+      <p>Open the <code>src</code> folder, choose the required notebook (<code>.ipynb</code>), and click “Open in Colab” to run.</p>
+    </section>
+
+    <section class="card" id="references">
       <h2>References</h2>
       <ol class="refs">
-        <li>QURI Parts — QunaSys Inc. — <a href="https://github.com/QunaSys/quri-parts" target="_blank" rel="noopener">https://github.com/QunaSys/quri-parts</a> (Framework for quantum circuits).</li>
-        <li>Xing Ai et al., “Towards Quantum Graph Neural Networks: An Ego‑Graph Learning Approach,” arXiv:2201.05158.</li>
-        <li>N. Shervashidze et al., “Weisfeiler‑Lehman Graph Kernels,” JMLR, 2011.</li>
-        <li>V. Havlíček et al., “Supervised Learning with Quantum‑Enhanced Feature Spaces,” Nature, 2019.</li>
-        <li>Andrew M. Childs, “Universal Computation by Quantum Walk,” Phys. Rev. Lett., 2009.</li>
+        <li>X. Ai et al., “Towards Quantum Graph Neural Networks: An Ego‑Graph Learning Approach,” arXiv:2201.05158v3 (2024). <a href="https://arxiv.org/html/2201.05158v3" target="_blank" rel="noopener">HTML</a>.</li>
+        <li>D. Aharonov, A. Ambainis, J. Kempe, U. Vazirani, “Quantum Walks on Graphs,” STOC’01; arXiv:quant‑ph/0012090. <a href="https://arxiv.org/pdf/quant-ph/0012090.pdf" target="_blank" rel="noopener">PDF</a>.</li>
+        <li>C. Kluber, “Trotterization in Quantum Theory,” arXiv:2310.13296. <a href="https://arxiv.org/pdf/2310.13296.pdf" target="_blank" rel="noopener">PDF</a>.</li>
+        <li>N. Shervashidze et al., “Weisfeiler‑Lehman Graph Kernels,” JMLR 12, 2539–2561 (2011). <a href="https://www.jmlr.org/papers/volume12/shervashidze11a/shervashidze11a.pdf" target="_blank" rel="noopener">PDF</a>.</li>
+        <li>K. M. Borgwardt, H.‑P. Kriegel, “Shortest‑path kernels on graphs,” ICDM 2005. <a href="https://ethz.ch/content/dam/ethz/special-interest/bsse/borgwardt-lab/documents/papers/BorKri05.pdf" target="_blank" rel="noopener">PDF</a>.</li>
+        <li>PyTorch Geometric TUDataset. <a href="https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.datasets.TUDataset.html" target="_blank" rel="noopener">docs</a>.</li>
+        <li>PyTorch Geometric utils (to_networkx, conversions). <a href="https://pytorch-geometric.readthedocs.io/en/2.5.3/modules/utils.html" target="_blank" rel="noopener">utils</a>.</li>
+        <li>QURI Parts simulator and states. <a href="https://quri-parts.qunasys.com/docs/tutorials/advanced/simulator/" target="_blank" rel="noopener">simulator</a>, <a href="https://quri-parts.qunasys.com/docs/tutorials/basics/states/" target="_blank" rel="noopener">states</a>.</li>
+        <li>Continuous‑time quantum walk overview. <a href="https://en.wikipedia.org/wiki/Continuous-time_quantum_walk" target="_blank" rel="noopener">overview</a>.</li>
+        <li>scikit‑learn SVC and RBF kernel. <a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html" target="_blank" rel="noopener">SVC</a>, <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.rbf_kernel.html" target="_blank" rel="noopener">rbf_kernel</a>.</li>
       </ol>
+      <p class="small center"><a href="#top">Back to top</a></p>
     </section>
   </div>
 </body>
