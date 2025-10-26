@@ -1,4 +1,4 @@
-# Quantum-Kernel-Molecular-Classification
+# QML-Molecular-Classification
 
 Comparing classical graph kernels and quantum-inspired embeddings for molecular classification — a project by Team The Cats Cradle.
 
@@ -7,84 +7,82 @@ Comparing classical graph kernels and quantum-inspired embeddings for molecular 
 https://www.qaif.org/contests/qpoland-global-quantum-hackathon 
 
 ## Overview
-This repository implements and evaluates classical graph kernel methods alongside a quantum-inspired feature map based on Quantum Walk (QW) principles for molecular and protein graph classification. The project compares established classical approaches (Weisfeiler-Lehman, Shortest-Path) with novel quantum-inspired methods (QURI Ego-QW, CTQW) using Support Vector Machines (SVMs) with an RBF kernel. The innovation lies in leveraging ego-graph decomposition and quantum-inspired techniques to address qubit-scaling issues, enabling efficient feature extraction that enhances classification performance on molecular structures.
+This repository implements and evaluates classical graph-kernel methods and a quantum-inspired (Trotterized quantum walk) kernel for molecular and protein graph classification. The goal is to compare classical approaches (Weisfeiler–Lehman, shortest-path, RBF/linear/polynomial kernels) with scalable quantum-walk-based embeddings that can be simulated classically or executed on quantum backends via QURI Parts.
 
-## Table of Contents
-- Getting Started
-- Datasets
-- Implementation Overview
-- Evaluation Protocol
-- Key Results
-- Team (Key Contributors)
-- Trimmed References
-- Contact
+Innovation: fixing qubit-scaling issues by using ego-graph decomposition to drastically reduce required qubit count while still capturing functional-group topology effects; this enables efficient, accurate feature extraction from molecular graphs and therefore improves classification performance.
 
-## Getting Started
-Clone and install dependencies:
-```bash
-git clone https://github.com/jajapuramshivasai/QML-Molecular-Classification.git
-cd Quantum-Kernel-Molecular-Classification
-pip install -r requirements.txt
-jupyter notebook
-```
+# Quantum-Kernel-Molecular-Classification
 
-Quick run (examples and notebooks are provided under the notebooks/ directory):
-- notebooks/sub_main.ipynb — End-to-end training and evaluation on benchmark datasets
-- notebooks/quantum_embeddings_demo.ipynb — Demo of the quantum-inspired embedding pipeline
+repo for comparing classical graph-kernel baselines with quantum‑inspired quantum-walk (QW) embeddings for molecular and protein graph classification.
 
-## Datasets
-Standard benchmark graph datasets used in experiments:
-- AIDS — HIV activity screening (~2000 compounds, subsampled to 200 per class)
-- PROTEINS — Protein enzyme classification (~1113 graphs, subsampled to 200 per class)
-- NCI1 — Anti-cancer compound activity (~4110 compounds, subsampled to 200 per class)
-- PTC-MR — Carcinogenicity prediction (~344 compounds, total used)
-- MUTAG — Mutagenicity prediction (~188 compounds, total used)
+Project site (pages/index.html): https://jajapuramshivasai.github.io/QML-Molecular-Classification/  
+Source page: https://github.com/jajapuramshivasai/QML-Molecular-Classification/blob/main/pages/index.html
 
-(See data/ or notebooks/ for dataset download and preprocessing scripts.)
+Quick start
+1. Clone and install
+   ```bash
+   git clone https://github.com/jajapuramshivasai/QML-Molecular-Classification.git
+   cd QML-Molecular-Classification
+   pip install -r requirements.txt
+   ```
+2. Open examples and reproduce experiments
+   - Jupyter: jupyter notebook
+   - Notebooks: notebooks/sub_main.ipynb (end-to-end), notebooks/quantum_embeddings_demo.ipynb (demo)
 
-## Implementation Overview
-- `extract_ego_graphs()`: Ego-graph decomposition to manage large graphs within limited qubit constraints.
-- `wl_subtree_kernel()`: Weisfeiler-Lehman subtree kernel implementation.
-- `shortest_path_kernel()`: Shortest-path kernel using NetworkX shortest-path statistics.
-- `QuantumWalkEmbedding` / `ScalableQuantumWalkEmbedding`: Classes for CTQW and QURI Ego-QW embeddings, with classical simulation options.
-- `fidelity_kernel()`: Utilizes quantum-state fidelity for Gram matrix construction via Quri Parts.
-- Utilities: `mixing_matrix_quri_circuit()`, `build_trotter_circuit_for_graph()`, `trotterize_positions_amplitude()`, `quantum_state_fidelity()`.
+What’s inside
+- notebooks/: reproducible experiments and demos (main entry: notebooks/sub_main.ipynb)
+- src/: implementation code for kernels, embeddings, and utilities
+- pages/index.html: project report used for the GitHub Pages site
+- experiment_results.json: per-run results and logs (if present)
 
-## Evaluation Protocol
-- Nested 5-fold cross-validation for robust generalization.
-- Classifier: SVM with RBF kernel (scikit-learn) using extracted feature representations.
-- Metrics: Mean ± standard deviation of Accuracy and F1-score across outer CV folds.
-- Data Handling: Features scaled (e.g., StandardScaler) with balanced class weights in SVM training.
+Datasets (TU benchmarks via PyTorch Geometric TUDataset)
+- AIDS, PROTEINS, NCI1, PTC-MR, MUTAG (preprocessing and sampling scripts in notebooks/ and src/)
 
-## Key Results (Summary)
-See notebooks/sub_main.ipynb and experiment_results.json for detailed logs and per-dataset numbers. Example summary table:
+Implemented methods (high level)
+- Ego‑QW: QURI‑inspired ego‑graph quantum‑walk embeddings (Trotterized circuits, observables aggregated across centers/times)
+- CTQW: full‑graph continuous‑time quantum‑walk spectral features
+- Classical baselines: Weisfeiler–Lehman subtree kernel, Shortest‑Path kernel
+- Classifier: SVM with RBF kernel and nested cross‑validation for hyperparameter selection
 
-| Method         | Dataset | Accuracy (Mean ± Std) | F1-score (Mean ± Std) |
-|----------------|---------|-----------------------|-----------------------|
-| QURI Ego-QW    | AIDS    | 0.9650 ± 0.0255       | 0.9662 ± 0.0237       |
-| CTQW           | AIDS    | 0.9950 ± 0.0100       | 0.9948 ± 0.0103       |
-| Shortest-Path  | AIDS    | 0.9600 ± 0.0200       | 0.9598 ± 0.0207       |
-| WL Subtree     | AIDS    | 0.9300 ± 0.0245       | 0.9193 ± 0.0309       |
-| QURI Ego-QW    | MUTAG   | 0.8772 ± 0.0336       | 0.8793 ± 0.0324       |
-| CTQW           | MUTAG   | 0.8514 ± 0.0255       | 0.8527 ± 0.0269       |
-| Shortest-Path  | MUTAG   | 0.7872 ± 0.0169       | 0.7812 ± 0.0161       |
-| WL Subtree     | MUTAG   | 0.7818 ± 0.0273       | 0.7783 ± 0.0295       |
+Evaluation
+- Nested 5‑fold CV (outer) with inner hyperparameter grid for SVM
+- Report mean ± std of Accuracy and F1 over outer folds
+- Features standardized and class weights balanced for SVM training
+- Reproducibility: fixed seeds for Python / NumPy / PyTorch; parameters controlled in notebooks
 
-(Results vary by dataset; full details in referenced files.)
+Representative results
+- Example numbers and plots are shown on the project page and in notebooks/sub_main.ipynb. Replace placeholders with your computed statistics when re-running experiments.
 
-## Team — Key Contributors
+Team
+- Jajapuram Shiva Sai — @frosty  
+- Amon Koike — @thedaemon_AK  
+- Ramesh Makwana — @Ramesh Makwana  
+- Dr. Sushant Tapase — @Dr-Sushant
 
-| Name                  | Discord Handle         | Role / Contribution                  |
-|-----------------------|------------------------|--------------------------------------|
-| Dr. Sushant Tapase    | @Dr-Sushant            | -  |
-| Amon Koike            | @thedaemon_AK         | - |
-| Jajapuram Shiva Sai   | @frosty               | -      |
-| Ramesh Makwana        | @Ramesh Makwana       | -    |
+References and resources
+- QURI Parts simulator: https://github.com/QunaSys/quri-parts  
+- See the project page for full references to WL kernels, shortest-path kernels, CTQW literature and other cited works.
 
-## References (Selected)
-1. QURI Parts — QunaSys Inc. — https://github.com/QunaSys/quri-parts (Framework for quantum circuits.)
-2. Xing Ai et al. — "Towards Quantum Graph Neural Networks: An Ego-Graph Learning Approach" — arXiv:2201.05158 (Ego-graph inspiration.)
-3. N. Shervashidze et al. — "Weisfeiler-Lehman Graph Kernels" — JMLR, 2011 (WL kernel.)
-4. V. Havlíček et al. — "Supervised Learning with Quantum-Enhanced Feature Spaces" — Nature, 2019 (Quantum feature maps.)
-5. Andrew M. Childs — "Universal Computation by Quantum Walk" — Phys. Rev. Lett., 2009 (Quantum walk foundations.)
+Contact
+- Open an issue or PR on this repository, or reach contributors via the Discord handles above.
 
+
+Contributing
+- Notebooks
+  - Quick edit in Colab: open the notebook (for example notebooks/sub_main.ipynb) in Google Colab, make edits, test, and save/export the updated notebook back to the repo or send a PR.
+  - Recommended workflow:
+    1. Open the notebook link and click "Open in Colab".
+    2. Edit cells and run end-to-end to confirm results.
+    3. Commit updated .ipynb with a short description of changes.
+
+- Website (GitHub Pages)
+  - To change the website, edit pages/index.html in this repository.
+  - To preview locally, run a simple HTTP server from the repository root:
+    ```bash
+    python3 -m http.server --directory . 8000 &
+    # then open:
+    # http://localhost:8000/pages/
+    ```
+  - After changes, push to the default branch; GitHub Pages will publish the updates at the project site above.
+
+Thank you for contributing — open an issue or PR with ideas, bug reports, or improvements.
