@@ -62,8 +62,8 @@ This repository presents a comparative study of classical graph kernels and a qu
 - Edit `pages/index.html`.  
 - Preview locally:  
   ```bash
-  python3 -m http.server --directory . 8000 &
-  open http://localhost:8000/pages/
+  python3 -m http.server 8000 --directory Docs
+  open http://localhost:8000/index.html
   ```
 - Push changes to the default branch for updates.
 
