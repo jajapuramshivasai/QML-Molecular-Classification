@@ -9,7 +9,10 @@ This repository presents a comparative study of classical graph kernels and a qu
 
 ## Repository Details  
 - **Project Site:** https://jajapuramshivasai.github.io/QML-Molecular-Classification/  
-- **Source Code:** https://github.com/jajapuramshivasai/QML-Molecular-Classification  
+- **Source Code:** https://github.com/jajapuramshivasai/QML-Molecular-Classification
+
+### Video link  
+https://drive.google.com/file/d/1p1539dZOyex4KxVeZW4sIBkU02wZt9MJ/view?usp=sharing
 
 ### Quick Start  
 1. Clone the repository and install dependencies:  
@@ -43,6 +46,10 @@ This repository presents a comparative study of classical graph kernels and a qu
 - Metrics: Mean ± std of Accuracy and F1-score  
 - Features standardized, class weights balanced  
 - Reproducible with fixed seeds (Python, NumPy, PyTorch)  
+
+### Hardware/Software/Simulator Platforms
+- We run our main notebook on Colab 12.7gb, CPU
+- Simulator: QURI Parts to run our Quantum routines. We did not use real Quantum hardware.
 
 ### Team  
 - Jajapuram Shiva Sai (@frosty)  
