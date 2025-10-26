@@ -78,9 +78,8 @@ Contributing
   - To change the website, edit pages/index.html in this repository.
   - To preview locally, run a simple HTTP server from the repository root:
     ```bash
-    python3 -m http.server --directory . 8000 &
-    # then open:
-    # http://localhost:8000/pages/
+      python3 -m http.server --directory . 8000 &
+      open http://localhost:8000/pages/
     ```
   - After changes, push to the default branch; GitHub Pages will publish the updates at the project site above.
 
