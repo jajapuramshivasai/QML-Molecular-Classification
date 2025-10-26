@@ -89,7 +89,7 @@
         This report benchmarks classical graph kernels against quantum‑inspired embeddings for molecular classification on TU datasets loaded via PyTorch Geometric’s TUDataset, ensuring consistent preparation across AIDS, PROTEINS, NCI1, PTC‑MR, and MUTAG.  
       </p>
       <p>
-        The proposed ego‑graph quantum‑walk (Ego‑QW) feature map caps qubit width by encoding local neighborhoods with compact, Trotterized circuits using QURI simulators; evolved statevectors are extracted via <code>evaluate_state_to_vector</code> for expectation readout of simple observables.  
+        The proposed ego‑graph quantum‑walk (Ego‑QW) feature map caps qubit width by encoding local neighborhoods with compact, Trotterized circuits using QURI simulators; Feature Vector is extracted as expectation readout of list of simple observables.  
       </p>
       <p>
         A complementary full‑graph continuous‑time quantum walk (CTQW) embedding summarizes global transport using exact unitary evolution \( \psi(t)=e^{-iHt}\psi(0) \) with adjacency or Laplacian Hamiltonians, evaluated efficiently at multiple times via eigen‑decomposition.  

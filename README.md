@@ -1,4 +1,3 @@
-
 # QPoland Global Quantum Hackathon 2025 Project  
 **Project Title:** Comparing Classical and Quantum-Inspired Kernels for Molecular Classification  
 **Team:** The Cats Cradle  
@@ -71,6 +70,15 @@ This repository presents a comparative study of classical graph kernels and a qu
 ### Contact  
 Raise issues or PRs here, or contact team members via Discord handles.
 
-## References  
-- QURI Parts: https://github.com/QunaSys/quri-parts  
-```
+## References
+
+1. X. Ai et al., “Towards Quantum Graph Neural Networks: An Ego‑Graph Learning Approach,” arXiv:2201.05158v3 (2024). [HTML](https://arxiv.org/html/2201.05158v3)
+2. D. Aharonov, A. Ambainis, J. Kempe, U. Vazirani, “Quantum Walks on Graphs,” STOC’01; arXiv:quant‑ph/0012090. [PDF](https://arxiv.org/pdf/quant-ph/0012090.pdf)
+3. C. Kluber, “Trotterization in Quantum Theory,” arXiv:2310.13296. [PDF](https://arxiv.org/pdf/2310.13296.pdf)
+4. N. Shervashidze et al., “Weisfeiler‑Lehman Graph Kernels,” JMLR 12, 2539–2561 (2011). [PDF](https://www.jmlr.org/papers/volume12/shervashidze11a/shervashidze11a.pdf)
+5. K. M. Borgwardt, H.‑P. Kriegel, “Shortest‑path kernels on graphs,” ICDM 2005. [PDF](https://ethz.ch/content/dam/ethz/special-interest/bsse/borgwardt-lab/documents/papers/BorKri05.pdf)
+6. PyTorch Geometric TUDataset. [docs](https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.datasets.TUDataset.html)
+7. PyTorch Geometric utils (to_networkx, conversions). [utils](https://pytorch-geometric.readthedocs.io/en/2.5.3/modules/utils.html)
+8. QURI Parts simulator and states. [simulator](https://quri-parts.qunasys.com/docs/tutorials/advanced/simulator/), [states](https://quri-parts.qunasys.com/docs/tutorials/basics/states/)
+9. Continuous‑time quantum walk overview. [overview](https://en.wikipedia.org/wiki/Continuous-time_quantum_walk)
+10. scikit‑learn SVC and RBF kernel. [SVC](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html), [rbf_kernel](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.rbf_kernel.html)
