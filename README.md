@@ -1,6 +1,7 @@
 # QPoland Global Quantum Hackathon 2025 Project  
 **Project Title:** Comparing Classical and Quantum-Inspired Kernels for Molecular Classification  
 **Team:** The Cats Cradle  
+**Track:** QML  
 **Date:** October 18, 2025 - October 26, 2025  
 **Website:** https://www.qaif.org/contests/qpoland-global-quantum-hackathon  
 
