@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Quantum‑Kernel‑Molecular‑Classification — Team The Cat’s Cradle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- MathJax v3: render \( ... \) and \[ ... \] -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: { renderActions: { addMenu: [] } }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    /* Light, pale theme */
+    :root {
+      --bg: #fafbfc;           /* page background */
+      --panel: #ffffff;        /* cards/panels */
+      --muted: #6b7280;        /* secondary text */
+      --text: #1f2937;         /* primary text */
+      --accent: #3a7bd5;       /* soft blue accent */
+      --chip: #eef2ff;         /* pale indigo pill */
+      --border: #e5e7eb;       /* soft gray borders */
+      --code: #f6f8fa;         /* code block bg (GitHub-like) */
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", Arial;
+      line-height: 1.55;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+
+    header.hero {
+      background: linear-gradient(180deg, #f7faff 0%, #ffffff 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .title { font-size: 28px; margin: 0 0 8px; letter-spacing: .2px; }
+    .subtitle { color: var(--muted); margin: 0 0 14px; }
+
+    .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .chip {
+      background: var(--chip);
+      color: #374151;
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      font-size: 12px;
+      border-radius: 999px;
+    }
+
+    section.card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin: 14px 0;
+      box-shadow: 0 1px 2px rgba(31,41,55,0.04);
+    }
+
+    section.card h2 { font-size: 18px; margin: 0 0 6px; }
+    section.card h3 { font-size: 16px; margin: 14px 0 6px; color: var(--accent); }
+
+    p { margin: 10px 0; color: #374151; }
+    ul, ol { margin: 8px 0 8px 20px; }
+    li { margin: 6px 0; }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+    code, pre {
+      background: var(--code);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      overflow: auto;
+      color: #111827;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      border: 1px solid var(--border);
+      background: #ffffff;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      font-size: 14px;
+      color: #1f2937;
+    }
+    th {
+      color: var(--accent);
+      background: #f3f4f6;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: #f0f7ff;
+      padding: 10px 12px;
+      border-radius: 6px;
+      color: #1f2937;
+    }
+
+    /* Figures */
+    figure {
+      margin: 14px 0;
+      padding: 10px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    figure img { width: 100%; height: auto; display: block; border-radius: 8px; }
+    figure .caption { font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+    .figgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 900px) { .figgrid { grid-template-columns: 1fr; } }
+
+    /* References list spacing */
+    .refs { padding-left: 20px; }
+    .refs li { margin: 6px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1 class="title">Quantum‑Kernel‑Molecular‑Classification</h1>
+      <p class="subtitle">Comparing classical graph kernels and quantum‑inspired embeddings for molecular classification — Team The Cat’s Cradle</p>
+      <div class="meta">
+        <span class="chip">QPoland Global Quantum Hackathon 2025</span>
+        <span class="chip">18–26 Oct 2025</span>
+        <span class="chip">Graph ML</span>
+        <span class="chip">Quantum‑Inspired</span>
+        <span class="chip">Ego‑Graph QW</span>
+        <span class="chip">QURI Parts</span>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Problem statement</h2>
+      <p>Design an original graph feature map \( \phi(G) \) that captures molecular structure and apply it with an SVM kernel of choice, reporting accuracy and F1 on AIDS, PROTEINS, NCI1, PTC‑MR, and MUTAG using a standard CV protocol.</p>
+      <ul>
+        <li>Propose \( \phi(G) \), train SVM (e.g., linear/RBF), and justify why the features are informative for classification.</li>
+        <li>Include comparisons to WL and Shortest‑Path; quantum‑inspired ideas and QURI Parts usage are encouraged.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Our innovation</h2>
+      <p>Full‑graph quantum walk embeddings scale qubits with nodes, so we pivot to ego‑graphs that bound circuit width while preserving discriminative local walk dynamics around chemically meaningful centers.</p>
+      <p>Each ego‑subgraph is encoded by a compact Trotterized circuit using QURI Parts, features are extracted from observables, and aggregated over time points and centers to yield a fixed‑size vector per molecule.</p>
+      <div class="callout">This decouples hardware width from global graph size by capping qubits at the max ego size, enabling NISQ‑feasible circuits without losing salient local patterns.</div>
+    </section>
+
+    <section class="card">
+      <h2>Overview of feature maps</h2>
+      <table>
+        <thead><tr><th>Feature Map / Kernel</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>QURI Ego‑QW</td>
+            <td>Local ego‑subgraphs are encoded via a fidelity‑style embedding using compact PQCs; features are aggregated across centers and times.</td>
+          </tr>
+          <tr>
+            <td>CTQW</td>
+            <td>Features from continuous‑time quantum walk probabilities on the full graph using \( H=\gamma A+V \) or \( H=\gamma L+V \) and \( \psi(t)=e^{-iHt}\psi(0) \).</td>
+          </tr>
+          <tr>
+            <td>Shortest‑Path (SP)</td>
+            <td>Histogram over labeled all‑pairs shortest paths \( (\ell_u,\ell_v,d(u,v)) \) as a fixed‑length embedding.</td>
+          </tr>
+          <tr>
+            <td>Weisfeiler–Lehman (WL)</td>
+            <td>Color refinement for \( h \) rounds with concatenated histograms \( [\mathrm{hist}(\mathcal{C}^{(0)}),\ldots,\mathrm{hist}(\mathcal{C}^{(h)})] \).</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Quantum circuit visualization</h2>
+      <p>The visualization represents the QURI Ego‑QW circuit on 5 qubits corresponding to a radius‑1 ego‑subgraph of a 5‑node star centered at node 0, with gates laid out and wrapped across segments for readability.</p>
+      <div class="figgrid">
+        <figure>
+          <img src="Ego_graph_Example.png" alt="5-node star ego-subgraph centered at node 0 (radius 1)" />
+          <div class="caption">5‑node star graph ego‑subgraph used to define the 5‑qubit register.</div>
+        </figure>
+        <figure>
+          <img src="Equi_circuit_trotter.png" alt="Quantum circuit visualization for QURI Ego-QW with trotterized edge blocks" />
+          <div class="caption">Trotterized QURI Ego‑QW circuit showing initialization and repeated edge blocks (RXX/RYY with label phases).</div>
+        </figure>
+      </div>
+
+      <h3>Gate layout and wrapping</h3>
+      <ul>
+        <li>Initialization applies Hadamards to all qubits to build a uniform superposition \( |\!+\rangle^{\otimes n} \).</li>
+        <li>One Trotter step at time \( t=0.5 \) applies per‑edge interactions over edges \( \{(0,1),(0,2),(0,3),(0,4)\} \).</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Trotterization</h2>
+      <p>Time evolution under a sum \( H=\sum_k H_k \) is approximated with first‑order Suzuki–Trotter: \( e^{-iHt} \approx \left(\prod_k e^{-iH_k \Delta t}\right)^{t/\Delta t} \), trading error \( O(\Delta t^2) \) for circuit depth.</p>
+      <ul>
+        <li>For an ego‑graph, the edge generator implements \( e^{-i\gamma \Delta t (X_iX_j+Y_iY_j)} \) via RXX and RYY with angle \( \phi=2\gamma\Delta t \).</li>
+        <li>Smaller \( \Delta t \) reduces error but increases depth; the design balances fidelity against NISQ feasibility.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Datasets</h2>
+      <p>Benchmarks include AIDS, PROTEINS, NCI1, PTC‑MR, and MUTAG with standardized node labels and consistent splits for evaluation.</p>
+      <figure>
+        <img src="NC11_Example_graph.png" alt="Sample graphs from NCI1 dataset with node labels and edge structures" />
+        <div class="caption">Representative NCI1 samples illustrating diverse halogenated structures and ring patterns.</div>
+      </figure>
+    </section>
+
+    <section class="card">
+      <h2>Evaluation protocol</h2>
+      <ol>
+        <li>Classifier: SVM with RBF kernel.</li>
+        <li>Validation: Nested 5‑fold CV with inner grid over \( C,\gamma \).</li>
+        <li>Preprocessing: Per‑graph feature extraction, scaling, and class‑balanced training.</li>
+        <li>Metrics: Mean ± std of Accuracy and \( F1 \) across outer folds.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Results</h2>
+      <div class="figgrid">
+        <figure>
+          <img src="Results_Acc.png" alt="Bar chart of mean accuracy across datasets for QURI, CTQW, SP, and WL" />
+          <div class="caption">Mean Accuracy across datasets and methods (QURI, CTQW, SP, WL).</div>
+        </figure>
+        <figure>
+          <img src="Result_F1.png" alt="Bar chart of mean F1-score across datasets for QURI, CTQW, SP, and WL" />
+          <div class="caption">Mean \( F1 \) across datasets and methods, mirroring the accuracy comparison for robustness.</div>
+        </figure>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th><th>Dataset</th><th>Accuracy (Mean ± Std)</th><th>F1-score (Mean ± Std)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>QURI Ego‑QW</td><td>AIDS</td><td>0.9650 ± 0.0255</td><td>0.9662 ± 0.0237</td></tr>
+          <tr><td>CTQW</td><td>AIDS</td><td>0.9950 ± 0.0100</td><td>0.9948 ± 0.0103</td></tr>
+          <tr><td>Shortest‑Path</td><td>AIDS</td><td>0.9600 ± 0.0200</td><td>0.9598 ± 0.0207</td></tr>
+          <tr><td>WL Subtree</td><td>AIDS</td><td>0.9300 ± 0.0245</td><td>0.9193 ± 0.0309</td></tr>
+          <tr><td>QURI Ego‑QW</td><td>MUTAG</td><td>0.8772 ± 0.0336</td><td>0.8793 ± 0.0324</td></tr>
+          <tr><td>CTQW</td><td>MUTAG</td><td>0.8514 ± 0.0255</td><td>0.8527 ± 0.0269</td></tr>
+          <tr><td>Shortest‑Path</td><td>MUTAG</td><td>0.7872 ± 0.0169</td><td>0.7812 ± 0.0161</td></tr>
+          <tr><td>WL Subtree</td><td>MUTAG</td><td>0.7818 ± 0.0273</td><td>0.7783 ± 0.0295</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Classical baselines</h2>
+
+      <h3>Shortest‑Path (SP)</h3>
+      <p>Embeds graphs via histograms over labeled all‑pairs shortest paths \( (\min(\ell_u,\ell_v),\max(\ell_u,\ell_v),d(u,v)) \), providing a permutation‑invariant summary of global connectivity.</p>
+
+      <h3>Weisfeiler–Lehman (WL)</h3>
+      <p>Performs \( h \) rounds of color refinement and concatenates color histograms, yielding multi‑scale neighborhood structure features with near‑linear cost per round on sparse graphs.</p>
+
+      <h3>Tips</h3>
+      <ul>
+        <li>Normalize histograms and standardize features before SVM; grid‑search \( C,\gamma \) within nested CV.</li>
+        <li>Enrich labels with atomic number, valence, aromaticity, and bond order for better chemical sensitivity.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Key concepts</h2>
+      <h3>Graph Laplacian</h3>
+      <p>The combinatorial Laplacian is \( L=D-A \) with degree matrix \( D \) and adjacency \( A \), commonly used to generate diffusion‑like dynamics on graphs.</p>
+
+      <h3>Hamiltonian choices</h3>
+      <p>Use \( H=\gamma A+V \) or \( H=\gamma L+V \) where \( \gamma \) sets hopping and \( V \) is a diagonal label potential capturing chemistry‑specific node information.</p>
+    </section>
+
+    <section class="card">
+      <h2>Reproduce</h2>
+      <ul>
+        <p>Open the <code>src</code> folder, choose the required notebook (<code>.ipynb</code>), and click “Open in Colab” to run.</p>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>References</h2>
+      <ol class="refs">
+        <li>QURI Parts — QunaSys Inc. — <a href="https://github.com/QunaSys/quri-parts" target="_blank" rel="noopener">https://github.com/QunaSys/quri-parts</a> (Framework for quantum circuits).</li>
+        <li>Xing Ai et al., “Towards Quantum Graph Neural Networks: An Ego‑Graph Learning Approach,” arXiv:2201.05158.</li>
+        <li>N. Shervashidze et al., “Weisfeiler‑Lehman Graph Kernels,” JMLR, 2011.</li>
+        <li>V. Havlíček et al., “Supervised Learning with Quantum‑Enhanced Feature Spaces,” Nature, 2019.</li>
+        <li>Andrew M. Childs, “Universal Computation by Quantum Walk,” Phys. Rev. Lett., 2009.</li>
+      </ol>
+    </section>
+  </div>
+</body>
+</html>
