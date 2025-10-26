@@ -66,7 +66,7 @@ Contact
 - Open an issue or PR on this repository, or reach contributors via the Discord handles above.
 
 
-Contributing
+# Contribution Guide
 - Notebooks
   - Quick edit in Colab: open the notebook (for example notebooks/sub_main.ipynb) in Google Colab, make edits, test, and save/export the updated notebook back to the repo or send a PR.
   - Recommended workflow:
