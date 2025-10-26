@@ -12,7 +12,8 @@ This repository presents a comparative study of classical graph kernels and a qu
 https://github.com/jajapuramshivasai/QML-Molecular-Classification/src
 
 ### Report link
-https://jajapuramshivasai.github.io/QML-Molecular-Classification/  
+https://jajapuramshivasai.github.io/QML-Molecular-Classification/
+https://github.com/jajapuramshivasai/QML-Molecular-Classification/docs/QML-Molecular-Classification_report.pdf  
 
 ### Video link  
 https://drive.google.com/file/d/1p1539dZOyex4KxVeZW4sIBkU02wZt9MJ/view?usp=sharing
