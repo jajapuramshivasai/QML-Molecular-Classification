@@ -151,7 +151,7 @@
       <h3 id="egoqw">3.1 Ego‑QW (Proposed)</h3>
       <ul>
         <li>Centers are sampled with a degree‑biased policy; radius‑\( r \) ego‑graphs are built and remapped to contiguous indices; integer node labels are encoded as a diagonal potential \(V\) on the register for label‑aware phase evolution.</li>
-        <li>A first‑order Trotter product approximates \( e^{-iHt} \) with \(H=\gamma A+V\): per step, apply label phases via \(R_Z(-\Delta t\,V_i)\), then two‑qubit edge interactions implementing \(e^{-i\gamma \Delta t (X_iX_j+Y_iY_j)}\) via RXX/RYY; states are read using QURI’s <code>evaluate_state_to_vector</code> and normalized.</li>
+        <li>A first‑order Trotter product approximates \( e^{-iHt} \) with \(H=\gamma A+V\): per step, apply label phases via \(R_Z(-\Delta t\,V_i)\), then two‑qubit edge interactions implementing \(e^{-i\gamma \Delta t (X_iX_j+Y_iY_j)}\) via RXX/RYY. </li>
         <li>Observables include projectors \(|i\rangle\!\langle i|\), adjacency \(A\), \(A^2\), and degree diagonal; expectations \( \langle O \rangle=\psi^\dagger O \psi \) are averaged across times and centers to form fixed‑length features for SVM‑RBF classification.</li>
       </ul>
 
