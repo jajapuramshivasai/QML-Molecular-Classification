@@ -1,6 +1,5 @@
-# QML-Molecular-Classification
 
-Comparing classical graph kernels and quantum-inspired embeddings for molecular classification — a project by Team The Cats Cradle.
+### Comparing classical graph kernels and quantum-inspired embeddings for molecular classification — a project by Team The Cats Cradle.
 
 ## QPoland Global Quantum Hackathon 2025
 18-Oct-2025 to 26-Oct-2025  
@@ -11,7 +10,7 @@ This repository implements and evaluates classical graph-kernel methods and a qu
 
 Innovation: fixing qubit-scaling issues by using ego-graph decomposition to drastically reduce required qubit count while still capturing functional-group topology effects; this enables efficient, accurate feature extraction from molecular graphs and therefore improves classification performance.
 
-# Quantum-Kernel-Molecular-Classification
+# QML-Molecular-Classification
 
 repo for comparing classical graph-kernel baselines with quantum‑inspired quantum-walk (QW) embeddings for molecular and protein graph classification.
 
@@ -38,7 +37,7 @@ What’s inside
 Datasets (TU benchmarks via PyTorch Geometric TUDataset)
 - AIDS, PROTEINS, NCI1, PTC-MR, MUTAG (preprocessing and sampling scripts in notebooks/ and src/)
 
-Implemented methods (high level)
+Implemented methods
 - Ego‑QW: QURI‑inspired ego‑graph quantum‑walk embeddings (Trotterized circuits, observables aggregated across centers/times)
 - CTQW: full‑graph continuous‑time quantum‑walk spectral features
 - Classical baselines: Weisfeiler–Lehman subtree kernel, Shortest‑Path kernel
